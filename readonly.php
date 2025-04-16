@@ -6,14 +6,12 @@ class Category
 {
 
 
-    public readonly string $id;
-    public readonly string $name;
 
-    public function __construct(string $id, string $name)
-    {
-        $this->id = $name;
-        $this->name = $name;
-    }
+
+    public function __construct(
+        public readonly string $id,
+        public readonly string $name,
+    ) {}
 }
 
 $category = new Category("a", "akmal");
