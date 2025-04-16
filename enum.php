@@ -1,7 +1,12 @@
 <?php
 
+
+interface sayHello
+{
+    function sayHello(): string;
+}
 // enum seperti class
-enum Gender: string
+enum Gender: string implements sayHello
 {
 
     case Male = 'Mr';
