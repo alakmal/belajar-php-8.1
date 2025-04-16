@@ -1,44 +1,30 @@
 <?php
 
-
+// enum seperti class
 enum Gender: string
 {
 
     case Male = 'Mr';
     case Female = "Mrs";
-}
 
-class Customer
-{
-
-    public string $name;
-    public Gender $gender;
-    public function __construct(string $name, Gender $gender)
+    function sayHello(): string
     {
-        $this->name = $name;
-        $this->gender = $gender;
+        return "Hello  {$this->value}" . PHP_EOL;
     }
 
-    public function __toString()
+    function inIndonesia(): string
     {
-        if ($this->gender == null) {
-            return "Hello {$this->name}" . PHP_EOL;
-        } else {
-            return "Hello {$this->gender->value}  {$this->name}" . PHP_EOL;
-        }
+        return match ($this) {
+            Gender::Male => "Tuan",
+            Gender::Female => "Nyonya"
+        };
     }
 }
 
 
 
+// menggunakan enum method
 
-
-
-$customer = new Customer('Budi', Gender::from("Mr"));
-$customer2 = new Customer("Sarah", Gender::from("Mrs"));
-
-
-var_dump((string)$customer);
-var_dump((string) $customer2);
-var_dump(Gender::Male); // enum
-var_dump(Gender::Male->value); // string
+$gender = Gender::Male;
+echo $gender->sayHello();
+echo $gender->inIndonesia() . PHP_EOL;
