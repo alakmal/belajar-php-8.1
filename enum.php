@@ -1,11 +1,11 @@
 <?php
 
 
-enum Gender
+enum Gender: string
 {
 
-    case Male;
-    case Female;
+    case Male = 'Mr';
+    case Female = "Mrs";
 }
 
 class Customer
@@ -21,12 +21,10 @@ class Customer
 
     public function __toString()
     {
-        if ($this->gender == Gender::Male) {
-            return "Hello Mr. {$this->name}" . PHP_EOL;
-        } elseif ($this->gender == Gender::Female) {
-            return "Hello Mrs. {$this->name}";
+        if ($this->gender == null) {
+            return "Hello {$this->name}" . PHP_EOL;
         } else {
-            return "Hello {$this->name}";
+            return "Hello {$this->gender->value}  {$this->name}" . PHP_EOL;
         }
     }
 }
@@ -36,11 +34,11 @@ class Customer
 
 
 
-$customer = new Customer('Budi', Gender::Male);
-$customer2 = new Customer("Sarah", Gender::Female);
+$customer = new Customer('Budi', Gender::from("Mr"));
+$customer2 = new Customer("Sarah", Gender::from("Mrs"));
 
 
 var_dump((string)$customer);
 var_dump((string) $customer2);
-var_dump(Gender::cases()); // arry
-var_dump(Gender::Male);
+var_dump(Gender::Male); // enum
+var_dump(Gender::Male->value); // string
