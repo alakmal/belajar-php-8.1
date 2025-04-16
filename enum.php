@@ -19,4 +19,10 @@ enum Gender: string
     use IndonesianGender;
     case Male = 'Mr';
     case Female = "Mrs";
+
+    const Unknown = "unknown";
 }
+
+$gender = Gender::Male;
+
+echo $gender::Unknown;
