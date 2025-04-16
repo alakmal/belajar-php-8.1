@@ -19,12 +19,30 @@ enum Gender: string
             Gender::Female => "Nyonya"
         };
     }
+
+    static function fromIndonesia(string $value): Gender
+    {
+        return match ($value) {
+            "Tuan" => Gender::Male,
+            "Nyonya" => Gender::Female,
+            default => throw new \Exception('Unsuported value')
+        };
+    }
 }
 
 
 
 // menggunakan enum method
+try {
+    echo Gender::fromIndonesia('Tuan')->value . PHP_EOL;
+} catch (\Exception $exception) {
 
-$gender = Gender::Male;
-echo $gender->sayHello();
-echo $gender->inIndonesia() . PHP_EOL;
+    echo "error : {$exception->getMessage()}";
+}
+
+try {
+    echo Gender::fromIndonesia('hgag')->value . PHP_EOL;
+} catch (\Exception $exception) {
+
+    echo "error : {$exception->getMessage()}";
+}
